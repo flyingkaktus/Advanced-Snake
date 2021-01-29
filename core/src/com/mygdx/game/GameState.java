@@ -2,88 +2,98 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Queue;
 
 public class GameState {
-    private int boardSize = 30;
+    private GameScreen gameScreen;
+    private int boardSize = 30; //600/ 30
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Controls controls = new Controls();
-    private Queue<BodyParts> mBody = new Queue<BodyParts>();
-    private Food mFood = new Food(boardSize);
     private float mTimer = 0;
-    private int snakeLength = 3;
+    private Food mFood = new Food(boardSize);
+    private Queue<BodyPart> mBody = new Queue();
+    private int snakeLength = 3; //==point -3 !!1
 
-    public GameState(){
-        mBody.addLast(new BodyParts(15,15,boardSize)); //head
-        mBody.addLast(new BodyParts(15,14,boardSize));
-        mBody.addLast(new BodyParts(15,13,boardSize)); //tail
+    public GameState(GameScreen gameScreen){
+        this.gameScreen = gameScreen;
+        mBody.addLast(new BodyPart(15,15, boardSize));//first
+        mBody.addLast(new BodyPart(14,15, boardSize));
+        mBody.addLast(new BodyPart(13,15, boardSize));//last
+
     }
 
-    public void update(float delta){ //update some logic ?
+    public void update(float delta){
         mTimer += delta;
+        controls.update();
+        //preset time period and advance the snake
         if(mTimer > 0.13f){
             mTimer = 0;
             advance();
         }
-        controls.update();
+
     }
-    public void draw(int width, int height, OrthographicCamera camera){ //draw the snake and board
+    public void draw(int width, int height, OrthographicCamera camera){ // draw snake and board
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+    //draw the game screen border
 
         shapeRenderer.setColor(1,1,1,1);
-        shapeRenderer.rect(0,0,width,width);
+        shapeRenderer.rect(0,0, width,height);
+        //drawover to see clearly the border
+        shapeRenderer.setColor(.0059f,.0322f,.0729f,1);
+        shapeRenderer.rect(5,5,width-10,height-10);
 
-        shapeRenderer.setColor(0,0,0,1);
-        shapeRenderer.rect(0+5,0+5,width-5*2, width - 5*2);
+
+        shapeRenderer.setColor(1,1,1,1);
         float scaleSnake = width/boardSize;
-        //draw the food
-        shapeRenderer.setColor(.5f,1,0,1);
-        shapeRenderer.rect(mFood.getX()*scaleSnake,mFood.getY()*scaleSnake, scaleSnake,scaleSnake);
-
-        //draw the snake
-        shapeRenderer.setColor(1,1,1,1);
-        for(BodyParts bp: mBody){
-            shapeRenderer.rect( bp.getX()*scaleSnake, bp.getY()*scaleSnake, scaleSnake, scaleSnake);
+        //draw food
+        shapeRenderer.rect(mFood.getX() * scaleSnake, mFood.getY() * scaleSnake, scaleSnake, scaleSnake);
+        //draw snake
+        for(BodyPart bp: mBody){
+            shapeRenderer.rect(bp.getX()*scaleSnake, bp.getY()*scaleSnake, scaleSnake, scaleSnake);
         }
 
         shapeRenderer.end();
     }
 
-    private void advance(){
+    public void advance(){
+
         int headX = mBody.first().getX();
         int headY = mBody.first().getY();
 
         switch(controls.getDirection()){
             case 0: //UP
-                mBody.addFirst(new BodyParts(headX, headY+1, boardSize));
+                mBody.addFirst(new BodyPart(headX, headY+1, boardSize));
                 break;
-                case 1: //RIGHT
-                    mBody.addFirst(new BodyParts(headX+1, headY, boardSize));
+            case 1: //RIGHT
+                mBody.addFirst(new BodyPart(headX+1, headY, boardSize));
                 break;
-                case 2: //DOWN
-                    mBody.addFirst(new BodyParts(headX, headY-1, boardSize));
+            case 2: //DOWN
+                mBody.addFirst(new BodyPart(headX, headY+-1, boardSize));
                 break;
-                case 3: //LEFT
-                    mBody.addFirst(new BodyParts(headX-1, headY, boardSize));
+            case 3: //LEFT
+                mBody.addFirst(new BodyPart(headX-1, headY, boardSize));
                 break;
             default:
-                mBody.addFirst(new BodyParts(headX, headY -1 , boardSize));
+                mBody.addFirst(new BodyPart(headX, headY+1, boardSize));
                 break;
         }
+        //snake eat food
         if(mBody.first().getX() == mFood.getX() && mBody.first().getY() == mFood.getY()){
-            snakeLength++;
+            snakeLength ++;
             mFood.randomisePos(boardSize);
         }
-        //dead
-        for(int i = 1; i<mBody.size; i++){
-            if(mBody.get(i).getX() == mBody.first().getX()
-                    && mBody.get(i).getY() == mBody.first().getY()){
-                        snakeLength = 3;
+        //death
+        for(int i = 1; i < mBody.size; i++){
+            if (mBody.get(i).getX() == mBody.first().getX()
+                    && mBody.get(i).getY() == mBody.first().getY()) {
+                    snakeLength = 3;
+                    gameScreen.game.setScreen(new EndScreen(gameScreen.game));
             }
+
         }
-        if(mBody.size - 1 == snakeLength){
+        //Ex: snakeLength = 4 while mBodysize = 3 --> doesn't remove --> +1 part to snake
+        while(mBody.size  -1 >= snakeLength){
             mBody.removeLast();
         }
     }
