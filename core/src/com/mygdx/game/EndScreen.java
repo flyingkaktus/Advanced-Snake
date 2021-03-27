@@ -43,12 +43,12 @@ public class EndScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
-        game.font.draw(game.batch, "Game Over!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.2f);
-        game.font.draw(game.batch, "Score: " + score_neu.getScore_latest(), Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.0f);
-        game.font.draw(game.batch, "Highscore: " + score_neu.getScore_highest(), Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*-.2f);
+        game.font.draw(game.batch, "Game Over!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.6f);
+        game.font.draw(game.batch, "Score: " + score_neu.getScore_latest(), Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.4f);
+        game.font.draw(game.batch, "Highscore: " + score_neu.getScore_highest(), Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.2f);
       if (score_neu.new_score_achieved == true) {
         game.font.draw(game.batch, "Congratulations!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*-.25f);
-        game.font.draw(game.batch, "New personal record!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*-.3f);
+        game.font.draw(game.batch, "New personal record!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*-.5f);
       }
         //  Gdx.input.getTextInput(listener, "New", "Input Your Name: ", "Your Name", Input.OnscreenKeyboardType 1);
         game.batch.end();

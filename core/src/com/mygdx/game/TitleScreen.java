@@ -39,7 +39,6 @@ public class TitleScreen extends ScreenAdapter {
 
     /**
      * This method is used to draw the welcome screen for the player.
-     * @param delta
      */
     @Override
     public void render(float delta){
@@ -51,9 +50,9 @@ public class TitleScreen extends ScreenAdapter {
 
         //draw the line of the beginning
         game.batch.begin();
-        game.font.draw(game.batch, "Welcome to", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.2f);
-        game.font.draw(game.batch, "Advanced Snake!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.1f);
-        game.font.draw(game.batch, "Press Enter to start ", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.0f);
+        game.font.draw(game.batch, "Welcome to", Gdx.graphics.getWidth()*-0.4f, Gdx.graphics.getHeight()*.5f);
+        game.font.draw(game.batch, "Advanced Snake!", Gdx.graphics.getWidth()*-0.4f, Gdx.graphics.getHeight()*.25f);
+        game.font.draw(game.batch, "Press Enter to start ", Gdx.graphics.getWidth()*-0.4f, Gdx.graphics.getHeight()*.0f);
         game.batch.end();
     }
 

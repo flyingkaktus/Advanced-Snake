@@ -18,8 +18,8 @@ public class GameScreen extends ScreenAdapter {
     public Snake game;
     private GameState gameState = new GameState(this);
 
-    private int width = 1080;
-    private int height = 2280;
+    private int width = 1000;
+    private int height = 1000;
 
     public OrthographicCamera camera = new OrthographicCamera(width, height);
     private Viewport viewport;
