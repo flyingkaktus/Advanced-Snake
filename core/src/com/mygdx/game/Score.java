@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.sun.org.apache.xpath.internal.objects.XBoolean;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +20,8 @@ public class Score {
 
 
 
+
+
     public Score() {
         new_score_achieved = false;
         listA = new ArrayList<>();
@@ -28,8 +31,8 @@ public class Score {
         this.score_latest = neu;
     }
 
-    public void setScore_highest(int i) {
-        this.score_highest = i;
+    public void setScore_highest(int neu) {
+        this.score_highest = neu;
     }
 
     public int getScore_latest() {

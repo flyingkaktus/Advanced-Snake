@@ -52,4 +52,5 @@ public class HighscoreScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(null);
     }
 
+
 }
