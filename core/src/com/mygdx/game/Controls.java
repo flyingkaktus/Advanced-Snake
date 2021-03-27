@@ -2,6 +2,11 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+
+/**
+ * This class is created to control movement of the snake.
+ * @author Minh
+ */
 public class Controls {
     private int currentDirection = 0; //0-U, 1-R, 2-D,3-L
     private int nextDirection = 0;

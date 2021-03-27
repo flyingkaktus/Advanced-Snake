@@ -8,6 +8,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+/**
+ * This class controls the background screens of the game.
+ * @author Minh, Maciej
+ */
 public class Snake extends Game { //Extends game to use multiple screens
     SpriteBatch batch;
     ShapeRenderer shapeRenderer;

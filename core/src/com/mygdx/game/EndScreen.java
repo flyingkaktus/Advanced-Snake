@@ -6,6 +6,10 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 
+/**
+ * Drawed when condition is met in gameScreen class.
+ * @author Minh, Maciej
+ */
 import static com.mygdx.game.GameState.*;
 
 public class EndScreen extends ScreenAdapter {
@@ -38,16 +42,16 @@ public class EndScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta){
-        Gdx.gl.glClearColor(1,0,0,1);
+        Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
-        game.font.draw(game.batch, "Game Over!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.2f);
-        game.font.draw(game.batch, "Score: " + score_neu.getScore_latest(), Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.0f);
-        game.font.draw(game.batch, "Highscore: " + score_neu.getScore_highest(), Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*-.2f);
+        game.font.draw(game.batch, "Game Over!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.6f);
+        game.font.draw(game.batch, "Score: " + score_neu.getScore_latest(), Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.4f);
+        game.font.draw(game.batch, "Highscore: " + score_neu.getScore_highest(), Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.2f);
       if (score_neu.new_score_achieved == true) {
         game.font.draw(game.batch, "Congratulations!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*-.25f);
-        game.font.draw(game.batch, "New personal record!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*-.3f);
+        game.font.draw(game.batch, "New personal record!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*-.5f);
       }
         //  Gdx.input.getTextInput(listener, "New", "Input Your Name: ", "Your Name", Input.OnscreenKeyboardType 1);
         game.batch.end();

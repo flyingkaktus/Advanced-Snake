@@ -2,6 +2,10 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.math.MathUtils;
 
+/**
+ * This class is created to initialize food.
+ * @author Minh
+ */
 public class Food {
     private int x;
     private int y;

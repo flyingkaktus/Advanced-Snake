@@ -5,6 +5,10 @@ import com.sun.org.apache.xpath.internal.objects.XBoolean;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is used for showing the highscore.
+ * @author Maciej
+ */
 public class Score {
     private int score_latest;
     private int score_highest;
