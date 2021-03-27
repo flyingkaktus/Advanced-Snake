@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 public class TitleScreen extends ScreenAdapter {
     Snake game;
 
+
     private int width = 1080;
     private int height = 2280;
 

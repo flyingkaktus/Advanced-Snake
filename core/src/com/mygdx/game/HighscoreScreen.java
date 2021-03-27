@@ -6,9 +6,9 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 
-public class Highscore extends ScreenAdapter {
+public class HighscoreScreen extends ScreenAdapter {
     Snake game;
-    public Highscore(Snake game){
+    public HighscoreScreen(Snake game){
         this.game = game;
     }
 
@@ -46,4 +46,5 @@ public class Highscore extends ScreenAdapter {
     public void hide(){
         Gdx.input.setInputProcessor(null);
     }
+
 }

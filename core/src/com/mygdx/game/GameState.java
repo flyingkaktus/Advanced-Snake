@@ -13,7 +13,7 @@ public class GameState {
     private Food mFood = new Food(boardSize);
     private Queue<BodyPart> mBody = new Queue();
     private int snakeLength = 3; //==point -3 !!1
-    public static int score;
+    public static int that_score;
 
     public GameState(GameScreen gameScreen){
         this.gameScreen = gameScreen;
@@ -88,7 +88,7 @@ public class GameState {
         for(int i = 1; i < mBody.size; i++){
             if (mBody.get(i).getX() == mBody.first().getX()
                     && mBody.get(i).getY() == mBody.first().getY()) {
-                    score = snakeLength-3;
+                    that_score = snakeLength-3;
                     snakeLength = 3;
                     gameScreen.game.setScreen(new EndScreen(gameScreen.game));
             }
