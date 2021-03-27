@@ -7,13 +7,16 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+/**
+ * This class is created to control the title screen of the game
+ * @author Minh
+ */
 public class TitleScreen extends ScreenAdapter {
     Snake game;
-
-
+    //Width and height of the game.
     private int width = 1080;
     private int height = 2280;
-
+    //Camera used to adjust the screen when it is resized.
     public OrthographicCamera camera1 = new OrthographicCamera(width, height);
 
     public TitleScreen(Snake game){
@@ -21,10 +24,11 @@ public class TitleScreen extends ScreenAdapter {
     }
 
     @Override
+    //Whenever we press ENTER the screen will move to Game Screen, where the game begins.
     public void show(){
         Gdx.input.setInputProcessor(new InputAdapter(){
             @Override
-            public boolean keyDown(int keyCode){
+            public boolean keyDown(int keyCode){ //press enter to play
                 if(keyCode == Input.Keys.ENTER){
                     game.setScreen(new GameScreen(game));
                 }
@@ -32,6 +36,11 @@ public class TitleScreen extends ScreenAdapter {
             }
         });
     }
+
+    /**
+     * This method is used to draw the welcome screen for the player.
+     * @param delta
+     */
     @Override
     public void render(float delta){
         //draw the title screen background

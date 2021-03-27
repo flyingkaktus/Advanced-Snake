@@ -6,6 +6,10 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 
+/**
+ * This class is created to store high score.
+ * @author Maciej
+ */
 public class HighscoreScreen extends ScreenAdapter {
     Snake game;
     public HighscoreScreen(Snake game){
