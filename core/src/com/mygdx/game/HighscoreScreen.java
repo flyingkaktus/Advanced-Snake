@@ -23,6 +23,7 @@ public class HighscoreScreen extends ScreenAdapter {
                 return true;
             }
         });
+    EndScreen.score_neu.listA.add(EndScreen.score_neu.getScore_highest());
     }
 
     @Override
@@ -33,13 +34,11 @@ public class HighscoreScreen extends ScreenAdapter {
 
         game.batch.begin();
         game.font.draw(game.batch, "Highscore List: ", Gdx.graphics.getWidth()*-0.35f, Gdx.graphics.getHeight()*.4f);
-        game.font.draw(game.batch, "1. ", Gdx.graphics.getWidth()*-0.35f, Gdx.graphics.getHeight()*.3f);
-        game.font.draw(game.batch, "2. ", Gdx.graphics.getWidth()*-0.35f, Gdx.graphics.getHeight()*.2f);
-        game.font.draw(game.batch, "3. ", Gdx.graphics.getWidth()*-0.35f, Gdx.graphics.getHeight()*.1f);
-        game.font.draw(game.batch, "4. ", Gdx.graphics.getWidth()*-0.35f, Gdx.graphics.getHeight()*.0f);
-        game.font.draw(game.batch, "5. ", Gdx.graphics.getWidth()*-0.35f, Gdx.graphics.getHeight()*-.1f);
-        game.batch.end();
 
+        for (int i = 0; i < EndScreen.score_neu.listA.size(); i++){
+            game.font.draw(game.batch, (i+1)+". "+ EndScreen.score_neu.listA.get(i), Gdx.graphics.getWidth()*-0.35f, Gdx.graphics.getHeight()*0.3f);
+        }
+        game.batch.end();
     }
 
     @Override

@@ -2,11 +2,17 @@ package com.mygdx.game;
 
 import com.sun.org.apache.xpath.internal.objects.XBoolean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Score {
     private int score_latest;
     private int score_highest;
     public boolean new_score_achieved;
     private String username;
+    List<Integer> listA = new ArrayList<Integer>();
+
+
 
     public Score() {
         new_score_achieved = false;
@@ -35,5 +41,6 @@ public class Score {
         } else {
             new_score_achieved = false;
         }
-        }
+    }
+
     }
