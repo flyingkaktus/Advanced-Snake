@@ -53,9 +53,9 @@ public class TitleScreen extends ScreenAdapter {
 
         //draw the line of the beginning
         game.batch.begin();
-        game.font.draw(game.batch, "Welcome to", Gdx.graphics.getWidth()*-0.4f, Gdx.graphics.getHeight()*.5f);
-        game.font.draw(game.batch, "Advanced Snake!", Gdx.graphics.getWidth()*-0.4f, Gdx.graphics.getHeight()*.25f);
-        game.font.draw(game.batch, "Press Enter to start ", Gdx.graphics.getWidth()*-0.4f, Gdx.graphics.getHeight()*.0f);
+        game.font.draw(game.batch, "Welcome to", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*.5f);
+        game.font.draw(game.batch, "Advanced Snake!", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*.25f);
+        game.font.draw(game.batch, "Press Enter to start ", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*.0f);
         game.batch.end();
     }
 
