@@ -14,10 +14,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 public class TitleScreen extends ScreenAdapter {
     Snake game;
     //Width and height of the game.
-    private int width = 1080;
-    private int height = 2280;
+    private int width = Gdx.graphics.getWidth();
+    private int height = Gdx.graphics.getHeight();
     //Camera used to adjust the screen when it is resized.
     public OrthographicCamera camera1 = new OrthographicCamera(width, height);
+    public GameScreen gameScreen;
 
     public TitleScreen(Snake game){
         this.game = game;
@@ -30,7 +31,9 @@ public class TitleScreen extends ScreenAdapter {
             @Override
             public boolean keyDown(int keyCode){ //press enter to play
                 if(keyCode == Input.Keys.ENTER){
-                    game.setScreen(new GameScreen(game));
+                    gameScreen = new GameScreen(game);
+                    gameScreen.setGameState();
+                    game.setScreen(gameScreen);
                 }
                 return true;
             }

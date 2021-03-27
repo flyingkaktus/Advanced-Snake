@@ -17,14 +17,16 @@ public class GameState {
     private Food mFood = new Food(boardSize);
     private Queue<BodyPart> mBody = new Queue();
     private int snakeLength = 3; //==point -3 !!1
-    public static int that_score;
+    public int that_score;
+    private EndScreen newEndscreen;
 
     public GameState(GameScreen gameScreen){
         this.gameScreen = gameScreen;
+        newEndscreen = new EndScreen(gameScreen.game);
         mBody.addLast(new BodyPart(15,15, boardSize));//first
         mBody.addLast(new BodyPart(14,15, boardSize));
         mBody.addLast(new BodyPart(13,15, boardSize));//last
-
+       // mBody.addLast(new BodyPart(12,15, boardSize));
     }
 
     public void update(float delta){
@@ -40,7 +42,7 @@ public class GameState {
     public void draw(int width, int height, OrthographicCamera camera){ // draw snake and board
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-    //draw the game screen border
+        //draw the game screen border
 
         shapeRenderer.setColor(1,1,1,1);
         shapeRenderer.rect(0,0, width,height);
@@ -93,13 +95,13 @@ public class GameState {
             if (mBody.get(i).getX() == mBody.first().getX()
                     && mBody.get(i).getY() == mBody.first().getY()) {
                     that_score = snakeLength-3;
-                    snakeLength = 3;
-                    gameScreen.game.setScreen(new EndScreen(gameScreen.game));
+                    newEndscreen.setThatscore(that_score);
+                    gameScreen.game.setScreen(newEndscreen);
             }
 
         }
         //Ex: snakeLength = 4 while mBodysize = 3 --> doesn't remove --> +1 part to snake
-        while(mBody.size  -1 >= snakeLength){
+        while(mBody.size -1 >= snakeLength){
             mBody.removeLast();
         }
     }

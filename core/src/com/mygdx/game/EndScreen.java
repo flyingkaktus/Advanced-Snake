@@ -10,30 +10,41 @@ import com.badlogic.gdx.graphics.GL20;
  * Drawed when condition is met in gameScreen class.
  * @author Minh, Maciej
  */
+import java.util.Collections;
+
 import static com.mygdx.game.GameState.*;
 
 public class EndScreen extends ScreenAdapter {
     Snake game;
-    public Score score_neu;
-    private HighscoreScreen highscoreScreen;
+    HighscoreScreen newHigh;
+    private int thatscore;
 
     public EndScreen(Snake game){
         this.game = game;
-        this.score_neu = new Score();
-        highscoreScreen = new HighscoreScreen(game, score_neu);
+        this.newHigh = new HighscoreScreen(game);
         }
+
+    public int getThatscore() {
+        return thatscore;
+    }
+
+    public void setThatscore(int thatscore) {
+        this.thatscore = thatscore;
+    }
 
     @Override
     public void show(){
 
-        score_neu.setScore_latest(GameState.that_score);
-        score_neu.manage();
+        game.score_neu.setScore_latest(thatscore);
+        game.score_neu.manage();
+        game.score_neu.listA.add(game.score_neu.getScore_latest());
+        game.score_neu.sortthatlist();
 
         Gdx.input.setInputProcessor(new InputAdapter(){
             @Override
             public boolean keyDown(int keyCode){
                 if(keyCode == Input.Keys.ENTER){
-                    game.setScreen(highscoreScreen);
+                    game.setScreen(newHigh);
                 }
                 return true;
             }
@@ -47,9 +58,9 @@ public class EndScreen extends ScreenAdapter {
 
         game.batch.begin();
         game.font.draw(game.batch, "Game Over!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.6f);
-        game.font.draw(game.batch, "Score: " + score_neu.getScore_latest(), Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.4f);
-        game.font.draw(game.batch, "Highscore: " + score_neu.getScore_highest(), Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.2f);
-      if (score_neu.new_score_achieved == true) {
+        game.font.draw(game.batch, "Score: " + game.score_neu.getScore_latest(), Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.4f);
+        game.font.draw(game.batch, "Highscore: " + game.score_neu.getScore_highest(), Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*.2f);
+      if (game.score_neu.new_score_achieved == true) {
         game.font.draw(game.batch, "Congratulations!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*-.25f);
         game.font.draw(game.batch, "New personal record!", Gdx.graphics.getWidth()*-0.3f, Gdx.graphics.getHeight()*-.5f);
       }

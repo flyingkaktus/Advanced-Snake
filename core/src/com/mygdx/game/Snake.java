@@ -16,6 +16,8 @@ public class Snake extends Game { //Extends game to use multiple screens
     SpriteBatch batch;
     ShapeRenderer shapeRenderer;
     BitmapFont font;
+    Score score_neu;
+    public TitleScreen newTitel;
 
     private FreeTypeFontGenerator fontGenerator;
     private FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
@@ -24,8 +26,11 @@ public class Snake extends Game { //Extends game to use multiple screens
     @Override
     public void create(){
         //create batch, shape, font to use in other screen
+        score_neu = new Score();
         batch = new SpriteBatch();
         font = new BitmapFont();
+        newTitel = new TitleScreen(this);
+
         shapeRenderer = new ShapeRenderer();
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Traveler Note.ttf"));
         fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -34,7 +39,7 @@ public class Snake extends Game { //Extends game to use multiple screens
         fontParameter.borderColor = Color.BLACK;
         fontParameter.color = Color.WHITE;
         font = fontGenerator.generateFont(fontParameter);
-        setScreen(new TitleScreen(this));
+        setScreen(newTitel);
     }
 
     @Override

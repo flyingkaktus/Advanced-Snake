@@ -16,10 +16,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  */
 public class GameScreen extends ScreenAdapter {
     public Snake game;
-    private GameState gameState = new GameState(this);
+    private GameState gameState;
 
-    private int width = 1000;
-    private int height = 1000;
+    private int width = Gdx.graphics.getWidth();
+    private int height = Gdx.graphics.getHeight();
 
     public OrthographicCamera camera = new OrthographicCamera(width, height);
     private Viewport viewport;
@@ -29,6 +29,10 @@ public class GameScreen extends ScreenAdapter {
         camera.setToOrtho(false, width, height);
         viewport = new FitViewport(width, height, camera);
         viewport.apply();
+    }
+
+    public void setGameState(){
+        gameState = new GameState(this);
     }
 
     @Override
