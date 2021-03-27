@@ -10,11 +10,14 @@ import static com.mygdx.game.GameState.*;
 
 public class EndScreen extends ScreenAdapter {
     Snake game;
-    static Score score_neu = new Score();
+    public Score score_neu;
+    private HighscoreScreen highscoreScreen;
 
     public EndScreen(Snake game){
         this.game = game;
-    }
+        this.score_neu = new Score();
+        highscoreScreen = new HighscoreScreen(game, score_neu);
+        }
 
     @Override
     public void show(){
@@ -26,7 +29,7 @@ public class EndScreen extends ScreenAdapter {
             @Override
             public boolean keyDown(int keyCode){
                 if(keyCode == Input.Keys.ENTER){
-                    game.setScreen(new HighscoreScreen(game));
+                    game.setScreen(highscoreScreen);
                 }
                 return true;
             }

@@ -9,13 +9,14 @@ public class Score {
     private int score_latest;
     private int score_highest;
     public boolean new_score_achieved;
-    private String username;
-    List<Integer> listA = new ArrayList<Integer>();
+  //  private String username;
+    List<Integer> listA;
 
 
 
     public Score() {
         new_score_achieved = false;
+        listA = new ArrayList<>();
     }
 
     public void setScore_latest(int neu) {

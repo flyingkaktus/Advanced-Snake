@@ -7,9 +7,14 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 
 public class HighscoreScreen extends ScreenAdapter {
+    private Score score;
     Snake game;
-    public HighscoreScreen(Snake game){
+
+    public HighscoreScreen(Snake game, Score score){
+
         this.game = game;
+        this.score = score;
+
     }
 
     @Override
@@ -23,7 +28,8 @@ public class HighscoreScreen extends ScreenAdapter {
                 return true;
             }
         });
-    EndScreen.score_neu.listA.add(EndScreen.score_neu.getScore_highest());
+
+        score.listA.add(score.getScore_highest());
     }
 
     @Override
@@ -35,8 +41,8 @@ public class HighscoreScreen extends ScreenAdapter {
         game.batch.begin();
         game.font.draw(game.batch, "Highscore List: ", Gdx.graphics.getWidth()*-0.35f, Gdx.graphics.getHeight()*.4f);
 
-        for (int i = 0; i < EndScreen.score_neu.listA.size(); i++){
-            game.font.draw(game.batch, (i+1)+". "+ EndScreen.score_neu.listA.get(i), Gdx.graphics.getWidth()*-0.35f, Gdx.graphics.getHeight()*0.3f);
+        for (int i = 0; i < score.listA.size(); i++){
+            game.font.draw(game.batch, (i+1)+". "+ score.listA.get(i), Gdx.graphics.getWidth()*-0.35f, Gdx.graphics.getHeight()*0.3f);
         }
         game.batch.end();
     }
