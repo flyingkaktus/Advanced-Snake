@@ -10,6 +10,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+/**
+ * This class is used to draw the screen for the main game.
+ * @author Minh
+ */
 public class GameScreen extends ScreenAdapter {
     public Snake game;
     private GameState gameState = new GameState(this);

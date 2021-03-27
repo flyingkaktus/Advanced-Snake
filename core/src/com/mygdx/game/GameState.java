@@ -4,6 +4,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Queue;
 
+/**
+ * This class is created to control the game logics.
+ * @author Minh, Maciej
+ */
 public class GameState {
     private GameScreen gameScreen;
     private int boardSize = 30; //600/ 30

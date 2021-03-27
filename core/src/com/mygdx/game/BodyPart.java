@@ -1,5 +1,10 @@
 package com.mygdx.game;
 
+/**
+ * This class is created to create the body parts randomly.
+ * @author Minh
+ *
+ */
 public class BodyPart {
     private int x;
     private int y;
