@@ -18,10 +18,6 @@ public class Score {
     public boolean new_score_achieved;
     public List<Integer> listA;
 
-
-
-
-
     public Score() {
         new_score_achieved = false;
         listA = new ArrayList<>();

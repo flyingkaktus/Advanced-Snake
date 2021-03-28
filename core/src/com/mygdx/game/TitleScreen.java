@@ -13,9 +13,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
  */
 public class TitleScreen extends ScreenAdapter {
     Snake game;
+
     //Width and height of the game.
-    private int width = Gdx.graphics.getWidth();
-    private int height = Gdx.graphics.getHeight();
+    private int width = 1440;
+    private int height = 2700;
+
     //Camera used to adjust the screen when it is resized.
     public OrthographicCamera camera1 = new OrthographicCamera(width, height);
     public GameScreen gameScreen;
@@ -53,9 +55,9 @@ public class TitleScreen extends ScreenAdapter {
 
         //draw the line of the beginning
         game.batch.begin();
-        game.font.draw(game.batch, "Welcome to", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*.35f);
-        game.font.draw(game.batch, "Advanced Snake!", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*.25f);
-        game.font.draw(game.batch, "Press Enter to start ", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*.0f);
+        game.font.draw(game.batch, "Welcome to", width*-0.45f, height*.35f);
+        game.font.draw(game.batch, "Advanced Snake!", width*-0.45f, height*.25f);
+        game.font.draw(game.batch, "Press Enter to start ", width*-0.45f, height*.0f);
         game.batch.end();
     }
 

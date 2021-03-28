@@ -18,8 +18,9 @@ public class GameScreen extends ScreenAdapter {
     public Snake game;
     private GameState gameState;
 
-    private int width = Gdx.graphics.getWidth();
-    private int height = Gdx.graphics.getHeight();
+    //Width and height of the game.
+    private int width = 1440;
+    private int height = 2700;
 
     public OrthographicCamera camera = new OrthographicCamera(width, height);
     private Viewport viewport;

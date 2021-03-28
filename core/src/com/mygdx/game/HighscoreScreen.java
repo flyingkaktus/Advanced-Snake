@@ -13,7 +13,8 @@ import com.badlogic.gdx.graphics.GL20;
 public class HighscoreScreen extends ScreenAdapter {
     Snake game;
     public boolean servercon = false;
-
+    private int width = 1440;
+    private int height = 2700;
     public HighscoreScreen(Snake game){
         this.game = game;
     }
@@ -41,19 +42,19 @@ public class HighscoreScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
-        game.font.draw(game.batch, "Top 5 Highscore List: ", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*.45f);
+        game.font.draw(game.batch, "Highscore Top 5 List: ", width*-0.45f, height*.45f);
         for (int i = 0; i < game.score_neu.listA.size(); i++){
-            game.font.draw(game.batch, " " + game.score_neu.listA.get(i), Gdx.graphics.getWidth()*-0.40f, Gdx.graphics.getHeight()*(0.40f-0.05f*(i+1)));
+            game.font.draw(game.batch, " " + game.score_neu.listA.get(i), width*-0.40f, height*(0.40f-0.05f*(i+1)));
             if (i >= 4) {
                 break;
             }}
-            for (int i = 0; i < 5; i++){
-                game.font.draw(game.batch, (i+1)+". ", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*(0.40f-0.05f*(i+1)));
+        for (int i = 0; i < 5; i++){
+                game.font.draw(game.batch, (i+1)+". ", width*-0.45f, height*(0.40f-0.05f*(i+1)));
             }
-        game.font.draw(game.batch, "Press A to synchro. with Server.", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*-.05f);
-        game.font.draw(game.batch, "Press Enter to play again.", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*-.10f);
+        game.font.draw(game.batch, "Press A to synchro. with Server.", width*-0.45f, height*-.05f);
+        game.font.draw(game.batch, "Press Enter to play again.", width*-0.45f, height*-.10f);
         if (servercon == true) {
-            game.font.draw(game.batch, "Connecting to Server...", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*-.15f);
+            game.font.draw(game.batch, "Connecting to Server...", width*-0.45f, height*-.15f);
         }
         game.batch.end();
     }
