@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.GL20;
  */
 public class HighscoreScreen extends ScreenAdapter {
     Snake game;
+    public boolean servercon = false;
 
     public HighscoreScreen(Snake game){
         this.game = game;
@@ -24,6 +25,9 @@ public class HighscoreScreen extends ScreenAdapter {
             public boolean keyDown(int keyCode){
                 if(keyCode == Input.Keys.ENTER){
                     game.setScreen(game.newTitel);
+                }
+                if(keyCode == Input.Keys.A){
+                    servercon = true;
                 }
                 return true;
             }
@@ -39,10 +43,17 @@ public class HighscoreScreen extends ScreenAdapter {
         game.batch.begin();
         game.font.draw(game.batch, "Top 5 Highscore List: ", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*.45f);
         for (int i = 0; i < game.score_neu.listA.size(); i++){
-            game.font.draw(game.batch, (i+1)+". "+ game.score_neu.listA.get(i), Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*(0.40f-0.05f*(i+1)));
+            game.font.draw(game.batch, " " + game.score_neu.listA.get(i), Gdx.graphics.getWidth()*-0.40f, Gdx.graphics.getHeight()*(0.40f-0.05f*(i+1)));
             if (i >= 4) {
                 break;
+            }}
+            for (int i = 0; i < 5; i++){
+                game.font.draw(game.batch, (i+1)+". ", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*(0.40f-0.05f*(i+1)));
             }
+        game.font.draw(game.batch, "Press A to synchro. with Server.", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*-.05f);
+        game.font.draw(game.batch, "Press Enter to play again.", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*-.10f);
+        if (servercon == true) {
+            game.font.draw(game.batch, "Connecting to Server...", Gdx.graphics.getWidth()*-0.45f, Gdx.graphics.getHeight()*-.15f);
         }
         game.batch.end();
     }
