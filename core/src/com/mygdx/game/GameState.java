@@ -39,6 +39,7 @@ public class GameState {
             if(that_score % 4 == 0 && that_score > 0){
                 acc -= .008f;
             }
+
         }
 
     }
