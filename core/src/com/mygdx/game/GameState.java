@@ -28,14 +28,17 @@ public class GameState {
         mBody.addLast(new BodyPart(13,15, boardSize));//last
        // mBody.addLast(new BodyPart(12,15, boardSize));
     }
-
+    private float acc = .13f; //acceleration
     public void update(float delta){
         mTimer += delta;
         controls.update();
         //preset time period and advance the snake
-        if(mTimer > 0.13f){
+        if(mTimer > acc){
             mTimer = 0;
             advance();
+            if(that_score % 4 == 0 && that_score > 0){
+                acc -= .008f;
+            }
         }
 
     }
