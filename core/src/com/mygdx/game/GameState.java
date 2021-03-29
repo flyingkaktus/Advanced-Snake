@@ -47,21 +47,22 @@ public class GameState {
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         //draw the game screen border
-
         shapeRenderer.setColor(1,1,1,1);
         shapeRenderer.rect(0,0, width,height);
+
         //drawover to see clearly the border
         shapeRenderer.setColor(.0059f,.0322f,.0729f,1);
         shapeRenderer.rect(5,5,width-10,height-10);
 
 
         shapeRenderer.setColor(1,1,1,1);
-        float scaleSnake = width/boardSize;
+        float scaleSnakeX = width/boardSize;
+        float scaleSnakeY = height/boardSize;
         //draw food
-        shapeRenderer.rect(mFood.getX() * scaleSnake, mFood.getY() * scaleSnake, scaleSnake, scaleSnake);
+        shapeRenderer.rect(mFood.getX() * scaleSnakeX, mFood.getY() * scaleSnakeY, scaleSnakeX, scaleSnakeY);
         //draw snake
         for(BodyPart bp: mBody){
-            shapeRenderer.rect(bp.getX()*scaleSnake, bp.getY()*scaleSnake, scaleSnake, scaleSnake);
+            shapeRenderer.rect(bp.getX()*scaleSnakeX, bp.getY()*scaleSnakeY, scaleSnakeX, scaleSnakeY);
         }
 
         shapeRenderer.end();
