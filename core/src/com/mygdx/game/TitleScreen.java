@@ -6,6 +6,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 
 /**
  * This class is created to control the title screen of the game
@@ -47,14 +48,14 @@ public class TitleScreen extends ScreenAdapter {
      */
     @Override
     public void render(float delta){
-        //draw the title screen background
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClearColor(0,0,0,1);       // set a specific color to clean the frame;
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);                   // cleans the frame;
 
         game.batch.setProjectionMatrix(camera1.combined);
 
-        //draw the line of the beginning
+        // the different objects for TitleScreen are drawn here;
         game.batch.begin();
+        game.batch.draw(game.img, -1440/2, -2700/2);
         game.font.draw(game.batch, "Welcome to", width*-0.45f, height*.35f);
         game.font.draw(game.batch, "Advanced Snake!", width*-0.45f, height*.25f);
         game.font.draw(game.batch, "Press Enter to start ", width*-0.45f, height*.0f);

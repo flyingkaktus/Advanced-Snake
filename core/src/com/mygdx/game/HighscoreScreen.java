@@ -42,6 +42,7 @@ public class HighscoreScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
+        game.batch.draw(game.img, -1440/2, -2700/2);
         game.font.draw(game.batch, "Highscore Top 5 List: ", width*-0.45f, height*.45f);
         for (int i = 0; i < game.score_neu.listA.size(); i++){
             game.font.draw(game.batch, " " + game.score_neu.listA.get(i), width*-0.40f, height*(0.40f-0.05f*(i+1)));
@@ -49,7 +50,7 @@ public class HighscoreScreen extends ScreenAdapter {
                 break;
             }}
         for (int i = 0; i < 5; i++){
-                game.font.draw(game.batch, (i+1)+". ", width*-0.45f, height*(0.40f-0.05f*(i+1)));
+                game.font.draw(game.batch, (i+1)+".", width*-0.45f, height*(0.40f-0.05f*(i+1)));
             }
         game.font.draw(game.batch, "Press A to synchro. with Server.", width*-0.45f, height*-.05f);
         game.font.draw(game.batch, "Press Enter to play again.", width*-0.45f, height*-.10f);

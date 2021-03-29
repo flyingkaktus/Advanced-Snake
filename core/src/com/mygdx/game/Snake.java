@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -17,7 +18,8 @@ public class Snake extends Game { //Extends game to use multiple screens
     ShapeRenderer shapeRenderer;
     BitmapFont font;
     Score score_neu;
-    public TitleScreen newTitel;
+    Texture img;
+    TitleScreen newTitel;
 
     private FreeTypeFontGenerator fontGenerator;
     private FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
@@ -30,12 +32,14 @@ public class Snake extends Game { //Extends game to use multiple screens
         batch = new SpriteBatch();
         font = new BitmapFont();
         newTitel = new TitleScreen(this);
+        img = new Texture("background_grass_full.jpg");
+
 
         shapeRenderer = new ShapeRenderer();
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Traveler Note.ttf"));
         fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        fontParameter.size = 100;
-        fontParameter.borderWidth = 5;
+        fontParameter.size = 140;
+        fontParameter.borderWidth = 6;
         fontParameter.borderColor = Color.BLACK;
         fontParameter.color = Color.WHITE;
         font = fontGenerator.generateFont(fontParameter);
