@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * This class is used for showing the highscore.
+ * The class manages, sorts and sets the values for the scores
  * @author Maciej
  */
 
