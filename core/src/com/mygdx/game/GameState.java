@@ -32,7 +32,7 @@ public class GameState {
     private float colourCounter = 0;
 
 
-    public GameState(GameScreen gameScreen,Snake game){
+    public GameState(GameScreen gameScreen, Snake game){
         this.gameScreen = gameScreen;
         this.game = game;
         newEndscreen = new EndScreen(gameScreen.game);
@@ -132,7 +132,7 @@ public class GameState {
             if (mBody.get(i).getX() == mBody.first().getX()
                     && mBody.get(i).getY() == mBody.first().getY()) {
                     that_score = snakeLength-3;
-                    newEndscreen.setThatscore(that_score);
+                    game.score_neu.setScore_latest(that_score);
                     gameScreen.game.setScreen(newEndscreen);
             }
 

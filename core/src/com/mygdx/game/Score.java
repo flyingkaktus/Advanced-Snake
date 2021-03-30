@@ -2,23 +2,27 @@ package com.mygdx.game;
 
 import com.sun.org.apache.xpath.internal.objects.XBoolean;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * This class is used for showing the highscore.
  * @author Maciej
  */
-public class Score {
+
+public class Score implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private int score_latest;
     private int score_highest;
     public boolean new_score_achieved;
     public List<Integer> listA;
 
-    public Score() {
+    public Score(){
+        score_latest = 0;
+        score_highest = 0;
         new_score_achieved = false;
         listA = new ArrayList<>();
     }

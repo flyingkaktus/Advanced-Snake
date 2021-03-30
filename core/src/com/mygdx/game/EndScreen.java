@@ -13,44 +13,45 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Drawed when condition is met in gameScreen class.
  * @author Minh, Maciej
  */
+import java.sql.SQLException;
 import java.util.Collections;
 
 import static com.mygdx.game.GameState.*;
 
 public class EndScreen extends ScreenAdapter {
+
     Snake game;
     HighscoreScreen newHigh;
-    private int thatscore;
+    NetworkClient_w newClient;
+
     private int width = 1440;
     private int height = 2700;
     public OrthographicCamera camera2 = new OrthographicCamera(width, height);
 
     public EndScreen(Snake game){
         this.game = game;
-        this.newHigh = new HighscoreScreen(game);
-
         }
-
-    public int getThatscore() {
-        return thatscore;
-    }
-
-    public void setThatscore(int thatscore) {
-        this.thatscore = thatscore;
-    }
 
     @Override
     public void show(){
 
-        game.score_neu.setScore_latest(thatscore);
         game.score_neu.manage();
         game.score_neu.listA.add(game.score_neu.getScore_latest());
         game.score_neu.sortthatlist();
+
+        try {
+            newClient = new NetworkClient_w(game.score_neu);
+            newClient.TransferScore();
+            newClient.getDB();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         Gdx.input.setInputProcessor(new InputAdapter(){
             @Override
             public boolean keyDown(int keyCode){
                 if(keyCode == Input.Keys.ENTER){
+                    newHigh = new HighscoreScreen(game, newClient);
                     game.setScreen(newHigh);
                 }
                 return true;

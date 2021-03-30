@@ -11,30 +11,26 @@ import com.badlogic.gdx.graphics.GL20;
  * @author Maciej
  */
 
-public class HighscoreScreen extends ScreenAdapter {
+public class GlobalScoreScreen extends ScreenAdapter {
     Snake game;
-    GlobalScoreScreen newGlobalScreen;
     NetworkClient_w newClient;
 
     private int width = 1440;
     private int height = 2700;
 
-    public HighscoreScreen(Snake game, NetworkClient_w newClient){
-                this.game = game;
-                this.newClient = newClient;
-                newGlobalScreen = new GlobalScoreScreen(game, newClient);
+    public GlobalScoreScreen(Snake game, NetworkClient_w newClient){
+        this.game = game;
+        this.newClient = newClient;
     }
 
     @Override
     public void show(){
+
         Gdx.input.setInputProcessor(new InputAdapter(){
             @Override
             public boolean keyDown(int keyCode){
                 if(keyCode == Input.Keys.ENTER){
                     game.setScreen(game.newTitel);
-                }
-                if(keyCode == Input.Keys.A){
-                    game.setScreen(newGlobalScreen);
                 }
                 return true;
             }
@@ -48,16 +44,15 @@ public class HighscoreScreen extends ScreenAdapter {
 
         game.batch.begin();
         game.batch.draw(game.img, -1440/2, -2700/2);
-        game.font.draw(game.batch, "Highscore Top 5 List: ", width*-0.45f, height*.45f);
-        for (int i = 0; i < game.score_neu.listA.size(); i++){
-            game.font.draw(game.batch, " " + game.score_neu.listA.get(i), width*-0.40f, height*(0.40f-0.05f*(i+1)));
+        game.font.draw(game.batch, "Global Top 5 List: ", width*-0.45f, height*.45f);
+        for (int i = 0; i < newClient.dbglobalscore.listA.size(); i++){
+            game.font.draw(game.batch, " " + newClient.dbglobalscore.listA.get(i), width*-0.40f, height*(0.40f-0.05f*(i+1)));
             if (i >= 4) {
                 break;
             }}
         for (int i = 0; i < 5; i++){
-                game.font.draw(game.batch, (i+1)+".", width*-0.45f, height*(0.40f-0.05f*(i+1)));
-            }
-        game.font.draw(game.batch, "Press A to synch w/ Server.", width*-0.45f, height*-.05f);
+            game.font.draw(game.batch, (i+1)+".", width*-0.45f, height*(0.40f-0.05f*(i+1)));
+        }
         game.font.draw(game.batch, "Press Enter to play again.", width*-0.45f, height*-.10f);
         game.batch.end();
     }
