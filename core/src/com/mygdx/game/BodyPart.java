@@ -9,12 +9,12 @@ public class BodyPart {
     private int x;
     private int y;
 
-    public BodyPart(int x, int y , int boardSize){
-        this.x = x %boardSize;
-        if(this.x < 0) this.x += boardSize;
+    public BodyPart(int x, int y , int boardSizeX,int boardSizeY){
+        this.x = x %boardSizeX;
+        if(this.x < 0) this.x += boardSizeX;
 
-        this.y = y%boardSize;
-        if(this.y < 0) this.y += boardSize;
+        this.y = y%boardSizeY;
+        if(this.y < 0) this.y += boardSizeY;
     }
 
     public int getX() {

@@ -10,11 +10,12 @@ import com.badlogic.gdx.utils.Queue;
  */
 public class GameState {
     private GameScreen gameScreen;
-    private int boardSize = 30; //600/ 30
+    private int boardSizeY = 15;
+    private int boardSizeX = 8;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Controls controls = new Controls();
     private float mTimer = 0;
-    private Food mFood = new Food(boardSize);
+    private Food mFood = new Food(boardSizeX,boardSizeY );
     private Queue<BodyPart> mBody = new Queue();
     private int snakeLength = 3; //==point -3 !!1
     public int that_score;
@@ -23,9 +24,9 @@ public class GameState {
     public GameState(GameScreen gameScreen){
         this.gameScreen = gameScreen;
         newEndscreen = new EndScreen(gameScreen.game);
-        mBody.addLast(new BodyPart(15,15, boardSize));//first
-        mBody.addLast(new BodyPart(14,15, boardSize));
-        mBody.addLast(new BodyPart(13,15, boardSize));//last
+        mBody.addLast(new BodyPart(15,15, boardSizeX,boardSizeY));//first
+        mBody.addLast(new BodyPart(14,15, boardSizeX,boardSizeY));
+        mBody.addLast(new BodyPart(13,15, boardSizeX,boardSizeY));//last
        // mBody.addLast(new BodyPart(12,15, boardSize));
     }
     private float acc = .13f; //acceleration
@@ -37,7 +38,7 @@ public class GameState {
             mTimer = 0;
             advance();
             if(that_score % 4 == 0 && that_score > 0){
-                acc -= .008f;
+                acc -= .01f;
             }
 
         }
@@ -56,8 +57,8 @@ public class GameState {
 
 
         shapeRenderer.setColor(1,1,1,1);
-        float scaleSnakeX = width/boardSize;
-        float scaleSnakeY = height/boardSize;
+        float scaleSnakeX = width/boardSizeX;
+        float scaleSnakeY = height/boardSizeY;
         //draw food
         shapeRenderer.rect(mFood.getX() * scaleSnakeX, mFood.getY() * scaleSnakeY, scaleSnakeX, scaleSnakeY);
         //draw snake
@@ -75,25 +76,25 @@ public class GameState {
 
         switch(controls.getDirection()){
             case 0: //UP
-                mBody.addFirst(new BodyPart(headX, headY+1, boardSize));
+                mBody.addFirst(new BodyPart(headX, headY+1, boardSizeX,boardSizeY));
                 break;
             case 1: //RIGHT
-                mBody.addFirst(new BodyPart(headX+1, headY, boardSize));
+                mBody.addFirst(new BodyPart(headX+1, headY, boardSizeX,boardSizeY));
                 break;
             case 2: //DOWN
-                mBody.addFirst(new BodyPart(headX, headY+-1, boardSize));
+                mBody.addFirst(new BodyPart(headX, headY+-1, boardSizeX,boardSizeY));
                 break;
             case 3: //LEFT
-                mBody.addFirst(new BodyPart(headX-1, headY, boardSize));
+                mBody.addFirst(new BodyPart(headX-1, headY, boardSizeX,boardSizeY));
                 break;
             default:
-                mBody.addFirst(new BodyPart(headX, headY+1, boardSize));
+                mBody.addFirst(new BodyPart(headX, headY+1, boardSizeX,boardSizeY));
                 break;
         }
         //snake eat food
         if(mBody.first().getX() == mFood.getX() && mBody.first().getY() == mFood.getY()){
             snakeLength ++;
-            mFood.randomisePos(boardSize);
+            mFood.randomisePos(boardSizeX,boardSizeY);
         }
         //death
         for(int i = 1; i < mBody.size; i++){
