@@ -1,9 +1,5 @@
 package com.mygdx.game;
 
-/**
- * Networking
- * @author Maciej
- */
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,15 +19,15 @@ public class NetworkClient_w {
         this.score0 = score0;
         dbglobalscore = new Score();
 
-        //conn = DriverManager.getConnection("jdbc:mariadb://alphalambdaunited.eu.mysql:3306/alphalambdaunited_eu_non_commercial", "alphalambdaunited_eu_non_commercial", "qwert1234qwert");	// Parameters for Connection to Database
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/advanced_snake_db", "root", ""); // Alternative connection in case the online database does not work.
+        conn = DriverManager.getConnection("jdbc:mysql://alphalambdaunited.eu.mysql.service.one.com:3306/alphalambdaunited_eu_non_commercial", "alphalambdaunited_eu_non_commercial", "qwert1234qwert");	// Parameters for Connection to Database
+        //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/advanced_snake_db", "root", ""); Alternative connection in case the online database does not work.
     }
 
 
     public void TransferScore() {
         try {
         Statement stmt01 = conn.createStatement();
-        stmt01.executeUpdate("INSERT INTO `highscores` (`id`, `highscore`)" + "VALUES (default, '"+ score0.getScore_highest() +"')");	// Value transfer from Object to DB table
+        stmt01.executeUpdate("INSERT INTO `advanced_snake_db` (`id`, `highscore`)" + "VALUES (default, '"+ score0.getScore_highest() +"')");	// Value transfer from Object to DB table
         } catch (SQLException e) {
             System.out.println("SQL Exception:" + e.getMessage());
         }
@@ -39,7 +35,7 @@ public class NetworkClient_w {
 
     public void getDB() {
             try {
-            String query = "SELECT * FROM `highscores`";
+            String query = "SELECT * FROM `advanced_snake_db`";
             Statement stmt02 = conn.createStatement();
             ResultSet rs = stmt02.executeQuery(query);
             while (rs.next()) {

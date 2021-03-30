@@ -7,7 +7,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 
 /**
- * This class is created to display high score.
+ * This class is created to store high score.
  * @author Maciej
  */
 
