@@ -52,7 +52,7 @@ public class HighscoreScreen extends ScreenAdapter {
         for (int i = 0; i < 5; i++){
                 game.font.draw(game.batch, (i+1)+".", width*-0.45f, height*(0.40f-0.05f*(i+1)));
             }
-        game.font.draw(game.batch, "Press A to synchro. with Server.", width*-0.45f, height*-.05f);
+        game.font.draw(game.batch, "Press A to synch w/ Server.", width*-0.45f, height*-.05f);
         game.font.draw(game.batch, "Press Enter to play again.", width*-0.45f, height*-.10f);
         if (servercon == true) {
             game.font.draw(game.batch, "Connecting to Server...", width*-0.45f, height*-.15f);

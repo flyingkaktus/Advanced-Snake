@@ -10,8 +10,8 @@ import com.badlogic.gdx.utils.Queue;
  */
 public class GameState {
     private GameScreen gameScreen;
-    private int boardSizeY = 15;
-    private int boardSizeX = 8;
+    private int boardSizeY = 45;
+    private int boardSizeX = 24;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Controls controls = new Controls();
     private float mTimer = 0;
