@@ -22,7 +22,7 @@ public class GameState {
     private Controls controls = new Controls();
     private float mTimer = 0;
     private Food mFood = new Food(boardSizeX,boardSizeY );
-    private Queue<BodyPart> mBody = new Queue();
+    private Queue<BodyPart> mBody = new Queue(); //Use Queue for FIFO,
     private int snakeLength = 3; //==point -3 !!1
     public int that_score;
     private EndScreen newEndscreen;
@@ -33,6 +33,7 @@ public class GameState {
         this.gameScreen = gameScreen;
         this.game = game;
         newEndscreen = new EndScreen(gameScreen.game);
+
         //initialize the first 3 parts of the snake in Queue.
         mBody.addLast(new BodyPart(15,15, boardSizeX,boardSizeY));//first
         mBody.addLast(new BodyPart(14,15, boardSizeX,boardSizeY));
@@ -40,11 +41,18 @@ public class GameState {
        // mBody.addLast(new BodyPart(12,15, boardSize));
     }
     private float acc = .13f; //Acceleration
+
+    /**
+     * This method updates the logics of the advance() method, see what to do everytime gameScreen
+     * renders.
+     * @param delta
+     */
     public void update(float delta){
         mTimer += delta;
         colourCounter += delta;
         controls.update();
-        //Reset time period and advance the snake.
+
+        //Reset time period (control the snake movement's speed) and advance the snake.
         if(mTimer > acc){
             mTimer = 0;
             advance();
@@ -57,23 +65,34 @@ public class GameState {
 
     }
     public void draw(int width, int height, OrthographicCamera camera){ // draw snake and board
+        //Set ProjectionMatrix of ShapeRenderer
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        //Set ProjectionMatrix of SpriteBatch
-        game.batch.setProjectionMatrix(camera.combined);
+        /**
+         * This scales the X partion of the snake in the matrix, makes its shape to be square!
+         */
         float scaleSnakeX = width/boardSizeX;
+        /**
+         * This scales the Y partion of the snake in the matrix, makes its shape to be square!
+         */
         float scaleSnakeY = height/boardSizeY;
 
-        //draw food
-        game.batch.begin();
-        game.batch.draw(game.appleimg, mFood.getX() * scaleSnakeX,
-                mFood.getY() * scaleSnakeY, scaleSnakeX, scaleSnakeY);
-        //draw snake
+        shapeRenderer.setColor(1,1,1,1);
+        shapeRenderer.rect(0,0,width,height);
+
+        shapeRenderer.setColor(0,0,0,1);
+        shapeRenderer.rect(0+5,0+5,width-10, height-10);
+
+        shapeRenderer.setColor(MathUtils.sin(colourCounter), 1, -MathUtils.sin(colourCounter), 1 );
+        shapeRenderer.rect(mFood.getX()*scaleSnakeX,
+                mFood.getY()*scaleSnakeY,scaleSnakeX, scaleSnakeY);
         for(BodyPart bp: mBody){
-            game.batch.draw(game.head,bp.getX()*scaleSnakeX, bp.getY()*scaleSnakeY,
-                    scaleSnakeX, scaleSnakeY);
+            shapeRenderer.rect(bp.getX()*scaleSnakeX,
+                    bp.getY()*scaleSnakeY, scaleSnakeX, scaleSnakeY);
         }
 
-        game.batch.end();
+        shapeRenderer.end();
     }
 
     public void advance(){

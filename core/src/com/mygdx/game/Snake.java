@@ -21,8 +21,6 @@ public class Snake extends Game { //Extends game to use multiple screens
     Score score_neu;
     Texture img;
     TitleScreen newTitel;
-    Texture head,body,tail,LD,LU,RU,RD,appleimg;
-
 
     private FreeTypeFontGenerator fontGenerator;
     private FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
@@ -30,24 +28,16 @@ public class Snake extends Game { //Extends game to use multiple screens
 
     @Override
     public void create(){
-        //create batch, shape, font to use in other screen
+        //create batch, shape, font to use for other screens
         score_neu = new Score();
         batch = new SpriteBatch();
         font = new BitmapFont();
         newTitel = new TitleScreen(this);
         img = new Texture("background_grass_full.jpg");
         batch = new SpriteBatch();
-        head = new Texture("Headimg.png");
-        body = new Texture("BoDy.png");
-        tail = new Texture("Tail.png");
-        LD = new Texture("LD-UR.png");
-        LU = new Texture("LU-DR.png");
-        RU = new Texture("RU-DL.png");
-        RD = new Texture("RD-UL.png");
-        appleimg = new Texture("xamlz.jpg");
-
 
         shapeRenderer = new ShapeRenderer();
+        //Add and set text type to use in game.
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Traveler Note.ttf"));
         fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         fontParameter.size = 140;
@@ -55,22 +45,15 @@ public class Snake extends Game { //Extends game to use multiple screens
         fontParameter.borderColor = Color.BLACK;
         fontParameter.color = Color.WHITE;
         font = fontGenerator.generateFont(fontParameter);
+        //Initialize the tittle screen, begin of the game.
         setScreen(newTitel);
     }
 
     @Override
-    public void dispose(){
+    public void dispose() {
         //close these when loop game is done
         batch.dispose();
         shapeRenderer.dispose();
         font.dispose();
-        head.dispose();
-        body.dispose();
-        tail.dispose();
-        LD.dispose();
-        LU.dispose();
-        RU.dispose();
-        RD.dispose();
-        appleimg.dispose();
     }
 }

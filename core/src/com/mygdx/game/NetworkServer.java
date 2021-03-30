@@ -12,6 +12,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+/**
+ * Connects to server.
+ * @author Maciej
+ */
 public class NetworkServer implements Runnable {
 
         private ServerSocket serverSocket = null;

@@ -25,8 +25,9 @@ public class GameScreen extends ScreenAdapter {
     public OrthographicCamera camera = new OrthographicCamera(width, height);
     private Viewport viewport;
 
-    public GameScreen(Snake game){
+    public GameScreen(Snake game){ //Constructor
         this.game = game;
+        //Apply the camera, when resize the screen won't be broken (look normal).
         camera.setToOrtho(false, width, height);
         viewport = new FitViewport(width, height, camera);
         viewport.apply();
@@ -37,7 +38,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     @Override
-    public void render(float delta){
+    public void render(float delta){ //Delta is a times between 2 frames being drawn.
         gameState.update(delta);
         camera.update();
         viewport.apply();

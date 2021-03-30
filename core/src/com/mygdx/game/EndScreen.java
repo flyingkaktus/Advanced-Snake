@@ -19,7 +19,6 @@ import static com.mygdx.game.GameState.*;
 
 public class EndScreen extends ScreenAdapter {
     Snake game;
-    GameScreen gameScreen;
     HighscoreScreen newHigh;
     private int thatscore;
     private int width = 1440;
@@ -71,6 +70,7 @@ public class EndScreen extends ScreenAdapter {
         game.font.draw(game.batch, "Game Over!", width*-0.45f, height*0.45f);
         game.font.draw(game.batch, "Score: " + game.score_neu.getScore_latest(), width*-0.45f, height*.25f);
         game.font.draw(game.batch, "Highscore: " + game.score_neu.getScore_highest(), width*-0.45f, height*.2f);
+        game.font.draw(game.batch, "Press Enter for High Score!",  width*-.45f,height*.05f);
       if (game.score_neu.new_score_achieved == true) {
         game.font.draw(game.batch, "Congratulations!", width*-0.45f, height*-.25f);
         game.font.draw(game.batch, "New personal record!", width*-0.45f, height*-.30f);
