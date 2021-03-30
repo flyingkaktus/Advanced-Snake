@@ -2,6 +2,8 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -24,6 +26,11 @@ public class GameScreen extends ScreenAdapter {
 
     public OrthographicCamera camera = new OrthographicCamera(width, height);
     private Viewport viewport;
+
+    public void show(){
+        game.music.setLooping(true);
+        game.music.play();
+    }
 
     public GameScreen(Snake game){ //Constructor
         this.game = game;
@@ -54,6 +61,7 @@ public class GameScreen extends ScreenAdapter {
     public void resize(int width, int height){
         viewport.update(width, height);
     }
+
 
 }
 

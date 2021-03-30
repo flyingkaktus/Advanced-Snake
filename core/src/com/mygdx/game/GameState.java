@@ -2,6 +2,9 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -121,6 +124,7 @@ public class GameState {
         //snake eat food
         if(mBody.first().getX() == mFood.getX() && mBody.first().getY() == mFood.getY()){
             snakeLength ++;
+            game.sound.play();
             mFood.randomisePos(boardSizeX,boardSizeY);
         }
         //death
@@ -138,4 +142,5 @@ public class GameState {
             mBody.removeLast();
         }
     }
+
 }
