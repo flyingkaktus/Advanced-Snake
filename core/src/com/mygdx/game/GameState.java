@@ -29,28 +29,26 @@ public class GameState {
     private float colourCounter = 0;
 
 
-
-
-
-
     public GameState(GameScreen gameScreen,Snake game){
         this.gameScreen = gameScreen;
         this.game = game;
         newEndscreen = new EndScreen(gameScreen.game);
+        //initialize the first 3 parts of the snake in Queue.
         mBody.addLast(new BodyPart(15,15, boardSizeX,boardSizeY));//first
         mBody.addLast(new BodyPart(14,15, boardSizeX,boardSizeY));
         mBody.addLast(new BodyPart(13,15, boardSizeX,boardSizeY));//last
        // mBody.addLast(new BodyPart(12,15, boardSize));
     }
-    private float acc = .13f; //acceleration
+    private float acc = .13f; //Acceleration
     public void update(float delta){
         mTimer += delta;
         colourCounter += delta;
         controls.update();
-        //preset time period and advance the snake
+        //Reset time period and advance the snake.
         if(mTimer > acc){
             mTimer = 0;
             advance();
+            //Use for making the snake move faster every 4 apples it eats.
             if(that_score % 4 == 0 && that_score > 0){
                 acc -= .01f;
             }
@@ -83,6 +81,7 @@ public class GameState {
         int headX = mBody.first().getX();
         int headY = mBody.first().getY();
 
+        //everytime advance() called, the snake move with these instructions.
         switch(controls.getDirection()){
             case 0: //UP
                 mBody.addFirst(new BodyPart(headX, headY+1, boardSizeX,boardSizeY));

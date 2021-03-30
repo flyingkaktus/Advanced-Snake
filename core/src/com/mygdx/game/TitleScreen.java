@@ -51,7 +51,7 @@ public class TitleScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(0,0,0,1);       // set a specific color to clean the frame;
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);                   // cleans the frame;
 
-        game.batch.setProjectionMatrix(camera1.combined);
+        game.batch.setProjectionMatrix(camera1.combined);       //Set ProjectionMatrix of SpriteBatch
 
         // the different objects for TitleScreen are drawn here;
         game.batch.begin();
