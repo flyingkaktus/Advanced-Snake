@@ -26,7 +26,7 @@ public class GameScreen extends ScreenAdapter {
 
     public OrthographicCamera camera = new OrthographicCamera(width, height);
     private Viewport viewport;
-
+    //Add some music for relaxing
     public void show(){
         game.music.setLooping(true);
         game.music.play();

@@ -25,7 +25,7 @@ public class GameState {
     private Controls controls = new Controls();
     private float mTimer = 0;
     private Food mFood = new Food(boardSizeX,boardSizeY );
-    private Queue<BodyPart> mBody = new Queue(); //Use Queue for FIFO,
+    private Queue<BodyPart> mBody = new Queue(); //Use Queue because of FIFO (easy for snake spawn)
     private int snakeLength = 3; //==point -3 !!1
     public int that_score;
     private EndScreen newEndscreen;
@@ -86,7 +86,10 @@ public class GameState {
 
         shapeRenderer.setColor(0,0,0,1);
         shapeRenderer.rect(0+5,0+5,width-10, height-10);
-
+        /*
+        Draw the color with sin(), which value run from 0 to 1, left green color to be 1 to advoid
+        black color.
+         */
         shapeRenderer.setColor(MathUtils.sin(colourCounter), 1, -MathUtils.sin(colourCounter), 1 );
         shapeRenderer.rect(mFood.getX()*scaleSnakeX,
                 mFood.getY()*scaleSnakeY,scaleSnakeX, scaleSnakeY);
