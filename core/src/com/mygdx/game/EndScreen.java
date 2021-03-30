@@ -5,6 +5,9 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * Drawed when condition is met in gameScreen class.
@@ -16,14 +19,17 @@ import static com.mygdx.game.GameState.*;
 
 public class EndScreen extends ScreenAdapter {
     Snake game;
+    GameScreen gameScreen;
     HighscoreScreen newHigh;
     private int thatscore;
     private int width = 1440;
     private int height = 2700;
+    public OrthographicCamera camera2 = new OrthographicCamera(width, height);
 
     public EndScreen(Snake game){
         this.game = game;
         this.newHigh = new HighscoreScreen(game);
+
         }
 
     public int getThatscore() {
@@ -58,6 +64,9 @@ public class EndScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+
+
+        game.batch.setProjectionMatrix(camera2.combined);
         game.batch.begin();
         game.font.draw(game.batch, "Game Over!", width*-0.45f, height*0.45f);
         game.font.draw(game.batch, "Score: " + game.score_neu.getScore_latest(), width*-0.45f, height*.25f);
@@ -75,4 +84,5 @@ public class EndScreen extends ScreenAdapter {
     public void hide(){
         Gdx.input.setInputProcessor(null);
     }
+
 }

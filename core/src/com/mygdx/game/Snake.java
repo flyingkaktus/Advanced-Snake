@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -20,6 +21,8 @@ public class Snake extends Game { //Extends game to use multiple screens
     Score score_neu;
     Texture img;
     TitleScreen newTitel;
+    Texture head,body,tail,LD,LU,RU,RD,appleimg;
+
 
     private FreeTypeFontGenerator fontGenerator;
     private FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
@@ -33,6 +36,15 @@ public class Snake extends Game { //Extends game to use multiple screens
         font = new BitmapFont();
         newTitel = new TitleScreen(this);
         img = new Texture("background_grass_full.jpg");
+        batch = new SpriteBatch();
+        head = new Texture("Headimg.png");
+        body = new Texture("BoDy.png");
+        tail = new Texture("Tail.png");
+        LD = new Texture("LD-UR.png");
+        LU = new Texture("LU-DR.png");
+        RU = new Texture("RU-DL.png");
+        RD = new Texture("RD-UL.png");
+        appleimg = new Texture("xamlz.jpg");
 
 
         shapeRenderer = new ShapeRenderer();
@@ -52,5 +64,13 @@ public class Snake extends Game { //Extends game to use multiple screens
         batch.dispose();
         shapeRenderer.dispose();
         font.dispose();
+        head.dispose();
+        body.dispose();
+        tail.dispose();
+        LD.dispose();
+        LU.dispose();
+        RU.dispose();
+        RD.dispose();
+        appleimg.dispose();
     }
 }

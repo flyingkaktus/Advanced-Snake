@@ -33,7 +33,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     public void setGameState(){
-        gameState = new GameState(this);
+        gameState = new GameState(this,game);
     }
 
     @Override

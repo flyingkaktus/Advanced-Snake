@@ -1,7 +1,12 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Queue;
 
 /**
@@ -10,6 +15,7 @@ import com.badlogic.gdx.utils.Queue;
  */
 public class GameState {
     private GameScreen gameScreen;
+    private Snake game;
     private int boardSizeY = 45;
     private int boardSizeX = 24;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
@@ -20,9 +26,16 @@ public class GameState {
     private int snakeLength = 3; //==point -3 !!1
     public int that_score;
     private EndScreen newEndscreen;
+    private float colourCounter = 0;
 
-    public GameState(GameScreen gameScreen){
+
+
+
+
+
+    public GameState(GameScreen gameScreen,Snake game){
         this.gameScreen = gameScreen;
+        this.game = game;
         newEndscreen = new EndScreen(gameScreen.game);
         mBody.addLast(new BodyPart(15,15, boardSizeX,boardSizeY));//first
         mBody.addLast(new BodyPart(14,15, boardSizeX,boardSizeY));
@@ -32,6 +45,7 @@ public class GameState {
     private float acc = .13f; //acceleration
     public void update(float delta){
         mTimer += delta;
+        colourCounter += delta;
         controls.update();
         //preset time period and advance the snake
         if(mTimer > acc){
@@ -45,28 +59,23 @@ public class GameState {
 
     }
     public void draw(int width, int height, OrthographicCamera camera){ // draw snake and board
-        shapeRenderer.setProjectionMatrix(camera.combined);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        //draw the game screen border
-        shapeRenderer.setColor(1,1,1,1);
-        shapeRenderer.rect(0,0, width,height);
 
-        //drawover to see clearly the border
-        shapeRenderer.setColor(.0059f,.0322f,.0729f,1);
-        shapeRenderer.rect(5,5,width-10,height-10);
-
-
-        shapeRenderer.setColor(1,1,1,1);
+        //Set ProjectionMatrix of SpriteBatch
+        game.batch.setProjectionMatrix(camera.combined);
         float scaleSnakeX = width/boardSizeX;
         float scaleSnakeY = height/boardSizeY;
+
         //draw food
-        shapeRenderer.rect(mFood.getX() * scaleSnakeX, mFood.getY() * scaleSnakeY, scaleSnakeX, scaleSnakeY);
+        game.batch.begin();
+        game.batch.draw(game.appleimg, mFood.getX() * scaleSnakeX,
+                mFood.getY() * scaleSnakeY, scaleSnakeX, scaleSnakeY);
         //draw snake
         for(BodyPart bp: mBody){
-            shapeRenderer.rect(bp.getX()*scaleSnakeX, bp.getY()*scaleSnakeY, scaleSnakeX, scaleSnakeY);
+            game.batch.draw(game.head,bp.getX()*scaleSnakeX, bp.getY()*scaleSnakeY,
+                    scaleSnakeX, scaleSnakeY);
         }
 
-        shapeRenderer.end();
+        game.batch.end();
     }
 
     public void advance(){
